@@ -11,4 +11,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  
+  root 'pages#home' # トップページを表示するコントローラーとアクションを設定
+  get 'diagnosis/start', to: 'diagnosis#start'
+  resources :questions, only: [:index] do
+    collection do
+      post :submit
+    end
+  end
+  resource :results, only: [:show]
 end

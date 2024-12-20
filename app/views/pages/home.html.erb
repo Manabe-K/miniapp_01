@@ -1,0 +1,19 @@
+<div class="container mx-auto px-4 py-12 text-center">
+  <!-- 見出し -->
+  <h1 class="text-4xl font-semibold text-gray-800 mb-4">
+    日本酒診断アプリへようこそ！
+  </h1>
+  
+  <!-- 説明文 -->
+  <p class="text-lg text-gray-600 mb-6">
+    いくつかの質問に答えるだけで、あなたにぴったりの日本酒を見つけられます。
+  </p>
+  
+  <!-- 診断ボタン -->
+  <%= link_to '診断する', diagnosis_start_path, class: 'inline-block bg-indigo-600 text-white text-lg py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300' %>
+
+  <!-- 日本酒のイメージ（オプション） -->
+  <div class="mt-8">
+    <img src="path_to_your_sake_image.jpg" alt="日本酒のイメージ" class="w-48 mx-auto rounded-lg shadow-lg">
+  </div>
+</div>

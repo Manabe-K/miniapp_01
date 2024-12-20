@@ -1,0 +1,26 @@
+<div class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-semibold text-center text-gray-800 mb-8">お酒診断</h1>
+
+  <%= form_with url: submit_questions_path, method: :post do |form| %>
+    <div class="space-y-6">
+      <% @questions.each_with_index do |question, index| %>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4"><%= question[:text] %></h2>
+          
+          <div class="space-y-4">
+            <% question[:options].each do |option| %>
+              <label class="flex items-center space-x-3">
+                <%= radio_button_tag "answers[#{index}]", option, class: "h-5 w-5 text-indigo-600" %>
+                <span class="text-gray-700 text-lg"><%= option %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-6">
+        <%= form.submit "診断する", class: "inline-block bg-indigo-600 text-white text-lg py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300" %>
+      </div>
+    </div>
+  <% end %>
+</div>
