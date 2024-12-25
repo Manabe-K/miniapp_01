@@ -1,11 +1,3 @@
-<% flash.each do |message_type, message| %>
-  <div class="<%= 'bg-green-500 text-white' if message_type == 'notice' %>
-              <%= 'bg-red-500 text-white' if message_type == 'alert' %>
-              px-4 py-2 rounded-md">
-    <%= message %>
-  </div>
-<% end %>
-
 <div class="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-lg" style="margin-top: 150px; margin-bottom: 100px;">
   <h1 class="text-3xl font-semibold text-center text-gray-800 mb-8"><%= @sake.name %></h1>
 
@@ -17,7 +9,10 @@
     
     <!-- 酒度の表示 -->
     <div class="flex justify-between items-center border-b-2 pb-4">
-      <p class="text-lg font-medium text-gray-700"><strong>酒度:</strong> <%= @sake.sake_meter_value %></p>
+      <p class="text-lg font-medium text-gray-700">
+        <strong>酒度:</strong> 
+        <%= @sake.sake_meter_value >= 0 ? "+#{@sake.sake_meter_value}" : @sake.sake_meter_value %>
+      </p>
     </div>
 
     <!-- 価格の表示 -->

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   
   root 'pages#home' # トップページを表示するコントローラーとアクションを設定
-  resources :sakes, only: [:index, :new, :create, :show]
+  resources :sakes, only: [:index, :show, :new, :create]
   get 'questions', to: 'questions#index', as: 'questions'
   get 'search', to: 'questions#search', as: 'search_results'
   get 'other_sakes', to: 'questions#other_sakes', as: 'other_sakes'

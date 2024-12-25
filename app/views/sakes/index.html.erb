@@ -1,4 +1,11 @@
-<div class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg" style="margin-top: 150px; margin-bottom: 100px;">
+<div style="margin-top: 150px; margin-bottom: 50px;">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+  おまかせで日本酒を紹介
+  </h1>
+  <%= render 'shared/sake_slider' %>
+</div>
+
+<div class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg" style="margin-bottom: 100px;">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">
   <%= @prefecture_name %>の日本酒
 </h1>
@@ -6,7 +13,6 @@
   <div class="mb-4">
     <%= link_to '新規作成', new_sake_path, class: "inline-block bg-yellow-800 text-white py-2 px-4 rounded-md hover:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-900" %>
   </div>
-
   <%= render 'shared/sakes_table', sakes: @sakes %>
   <%= paginate @sakes %>
 </div>

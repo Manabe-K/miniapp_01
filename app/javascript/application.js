@@ -3,4 +3,6 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "./sakes";
 
-//= require swiper/swiper-bundle.js
+import "stylesheets/application"; // Tailwind CSSのインポート（そのまま）
+import Swiper from 'swiper'; // Swiperをインポート
+import 'swiper/swiper-bundle.min.css'; // SwiperのCSSをインポート

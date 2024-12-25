@@ -1,3 +1,4 @@
+
   <!-- 見出し -->
 <div class="container mx-auto px-4 py-32 text-center" style="margin-top: 50px">
   <div class="bg-cover bg-center relative text-white w-full" style="background-image: url('<%= asset_path('bg.jpg') %>'); height: 500px;">
@@ -24,11 +25,15 @@
     <% end %>
   </div>
 
-  <!-- 日本酒のイメージ -->
-  <div class="mt-12">
-    <img src="path_to_your_sake_image.jpg" alt="日本酒のイメージ" class="w-48 mx-auto rounded-xl shadow-lg">
-  </div>
+<div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 18px;">
+  <%= link_to "#", class: 'inline-block rounded-full shadow-md hover:opacity-80 transition duration-300' do %>
+    <%= image_tag 'button_kimagure.png', alt: 'きまぐれ表示', class: 'object-cover', width: 254, height: 68 %>
+  <% end %>
 </div>
+
+
+  <%= render 'shared/sake_slider' %>
+
 
 <div class="flex flex-col items-center space-y-4" style="margin-top: 50px">
     <%= link_to sakes_path, class: 'inline-block rounded-full shadow-md hover:opacity-80 transition duration-300' do %>
@@ -38,8 +43,8 @@
 
 
 <div id="japan-map" class="relative w-[793px] h-[600px] mx-auto mt-16">
-    <p class="text-xl text-center absolute top-[40px] left-[50%] transform -translate-x-1/2 ">
-      都道府県別の日本酒は下記をクリック
+    <p class="text-xl text-center font-semibold absolute top-[80px] left-[45%] transform -translate-x-1/2 ">
+      ↓↓↓都道府県別の日本酒は下記をクリック↓↓↓
     </p>
   <!-- 関東 -->
   <div id="kantou" class="absolute left-[639px] top-[265px] w-[158px] h-[174px] z-10">

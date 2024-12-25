@@ -2,9 +2,11 @@ class SakesController < ApplicationController
   def index
     if params[:prefecture]
       @sakes = Sake.where(prefecture: params[:prefecture]).page(params[:page])
+      @random_sakes = @sakes.order('RANDOM()').limit(5)
       @prefecture_name = Sake.prefectures.keys[params[:prefecture].to_i].capitalize
     else
       @sakes = Sake.all.page(params[:page])
+      @random_sakes = @sakes.order('RANDOM()').limit(5)
       @prefecture_name = "全国"
     end
   end
@@ -37,6 +39,9 @@ class SakesController < ApplicationController
 
   def show
     @sake = Sake.find(params[:id])
+    @prefecture = params[:prefecture] # ここで都道府県を受け取る
+    # 都道府県に関連する他の処理（例えば、同じ都道府県の酒を表示するなど）
+    @sakes_in_prefecture = Sake.where(prefecture: @prefecture) if @prefecture.present?
   end
 
   private
