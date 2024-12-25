@@ -10,17 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_20_040239) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_25_083338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "sake_tags", force: :cascade do |t|
+    t.integer "sake_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sake_id", "tag_id"], name: "index_sake_tags_on_sake_id_and_tag_id", unique: true
+  end
+
   create_table "sakes", force: :cascade do |t|
     t.string "name", null: false
-    t.string "taste"
-    t.string "sweetness"
-    t.string "origin"
-    t.string "image_url"
+    t.decimal "sake_meter_value", precision: 5, scale: 1, null: false
+    t.integer "price", null: false
+    t.integer "prefecture", null: false
+    t.string "label_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "label_genre", default: 0, null: false
+    t.integer "type_of_sake", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "sake_tags", "sakes"
+  add_foreign_key "sake_tags", "tags"
 end

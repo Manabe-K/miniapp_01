@@ -1,19 +1,331 @@
-<div class="container mx-auto px-4 py-12 text-center">
   <!-- 見出し -->
-  <h1 class="text-4xl font-semibold text-gray-800 mb-4">
-    日本酒診断アプリへようこそ！
-  </h1>
-  
-  <!-- 説明文 -->
-  <p class="text-lg text-gray-600 mb-6">
-    いくつかの質問に答えるだけで、あなたにぴったりの日本酒を見つけられます。
-  </p>
-  
-  <!-- 診断ボタン -->
-  <%= link_to '診断する', diagnosis_start_path, class: 'inline-block bg-indigo-600 text-white text-lg py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300' %>
+<div class="container mx-auto px-4 py-32 text-center" style="margin-top: 50px">
+  <div class="bg-cover bg-center relative text-white w-full" style="background-image: url('<%= asset_path('bg.jpg') %>'); height: 500px;">
+    <!-- テキストを配置 -->
+    <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+      <h1 class="text-6xl font-semibold mb-9" style="text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);">
+        日本酒探訪へようこそ！
+      </h1>
 
-  <!-- 日本酒のイメージ（オプション） -->
-  <div class="mt-8">
-    <img src="path_to_your_sake_image.jpg" alt="日本酒のイメージ" class="w-48 mx-auto rounded-lg shadow-lg">
+      <p class="text-2xl font-semibold" style="text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);">
+        地域やお酒の味合いに合わせて、「飲みたい、次の日本酒を探しに」<br>  
+        新しい日本酒の魅力を探しに出かけましょう！
+      </p>
+    </div>
   </div>
+  
+  <!-- 探訪ボタン -->
+  <div class="flex flex-col items-center space-y-4" style="margin-top: 50px">
+    <%= link_to questions_path, class: 'inline-block rounded-full shadow-md hover:opacity-80 transition duration-300' do %>
+      <%= image_tag 'button_search.png', alt: '探訪する', class: 'object-cover', width: '254', height: '68' %>
+    <% end %>
+    <%= link_to new_sake_path, class: 'inline-block rounded-full shadow-md hover:opacity-80 transition duration-300' do %>
+      <%= image_tag 'button_new.png', alt: '登録する', class: 'object-cover', width: '254', height: '68' %>
+    <% end %>
+  </div>
+
+  <!-- 日本酒のイメージ -->
+  <div class="mt-12">
+    <img src="path_to_your_sake_image.jpg" alt="日本酒のイメージ" class="w-48 mx-auto rounded-xl shadow-lg">
+  </div>
+</div>
+
+<div class="flex flex-col items-center space-y-4" style="margin-top: 50px">
+    <%= link_to sakes_path, class: 'inline-block rounded-full shadow-md hover:opacity-80 transition duration-300' do %>
+      <%= image_tag 'button_index.png', alt: '日本酒一覧', class: 'object-cover', width: '254', height: '68' %>
+    <% end %>
+</div>
+
+
+<div id="japan-map" class="relative w-[793px] h-[600px] mx-auto mt-16">
+    <p class="text-xl text-center absolute top-[40px] left-[50%] transform -translate-x-1/2 ">
+      都道府県別の日本酒は下記をクリック
+    </p>
+  <!-- 関東 -->
+  <div id="kantou" class="absolute left-[639px] top-[265px] w-[158px] h-[174px] z-10">
+    <p class="sr-only">関東</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 9) %>" class="block">
+        <div id="gunma" class="bg-[#31beca] text-white flex items-center justify-center w-[50px] h-[42px] absolute top-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>群馬</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 8) %>" class="block">
+        <div id="tochigi" class="bg-[#31beca] text-white flex items-center justify-center w-[50px] h-[42px] absolute top-0 left-[50px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>栃木</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 10) %>" class="block">
+        <div id="saitama" class="bg-[#31beca] text-white flex items-center justify-center w-[100px] h-[43px] absolute top-[42px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>埼玉</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 11) %>" class="block">
+        <div id="chiba" class="bg-[#31beca] text-white flex items-center justify-center w-[52px] h-[84px] absolute top-[85px] left-[100px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>千葉</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 12) %>" class="block">
+        <div id="tokyo" class="bg-[#31beca] text-white flex items-center justify-center w-[100px] h-[42px] absolute top-[85px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>東京</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 13) %>" class="block">
+        <div id="kanagawa" class="bg-[#31beca] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[127px] left-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>神奈川</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 13) %>" class="block">
+        <div id="ibaraki" class="bg-[#31beca] text-white flex items-center justify-center w-[52px] h-[85px] absolute top-0 left-[100px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>茨城</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 北海道・東北 -->
+  <div id="hokkaido-touhoku" class="absolute left-[654px] w-[136px] h-[265px]">
+    <p class="sr-only">北海道・東北</p>
+    <div class="area relative">
+      <a href="<%= sakes_path(prefecture: 0) %>" class="block">
+        <div id="hokkaido" class="bg-[#7478c2] text-white flex items-center justify-center w-[133px] h-[70px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>北海道</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 1) %>" class="block">
+        <div id="aomori" class="bg-[#7478c2] text-white flex items-center justify-center w-[93px] h-[43px] absolute top-[96px] left-[21px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>青森</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 4) %>" class="block">
+        <div id="akita" class="bg-[#7478c2] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[139px] left-[3px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>秋田</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 2) %>" class="block">
+        <div id="iwate" class="bg-[#7478c2] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[139px] left-[70px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>岩手</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 5) %>" class="block">
+        <div id="yamagata" class="bg-[#7478c2] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[181px] left-[3px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>山形</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 3) %>" class="block">
+        <div id="miyagi" class="bg-[#7478c2] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[181px] left-[70px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>宮城</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 6) %>" class="block">
+        <div id="fukushima" class="bg-[#7478c2] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[223px] left-[70px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>福島</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+
+  <!-- 中部 -->
+  <div id="tyubu" class="absolute left-[438px] top-[223px] w-[286px] h-[211px]">
+    <p class="sr-only">中部</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 14) %>" class="block">
+        <div id="nigata" class="bg-[#4ab969] text-white flex items-center justify-center w-[85px] h-[42px] absolute left-[201px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>新潟</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 15) %>" class="block">
+        <div id="toyama" class="bg-[#4ab969] text-white flex items-center justify-center w-[67px] h-[42px] absolute left-[134px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>富山</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 16) %>" class="block">
+        <div id="ishikawa" class="bg-[#4ab969] text-white flex items-center justify-center w-[50px] h-[57px] absolute left-[84px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>石川</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 17) %>" class="block">
+        <div id="fukui" class="bg-[#4ab969] text-white flex items-center justify-center w-[84px] h-[42px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>福井</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 19) %>" class="block">
+        <div id="nagano" class="bg-[#4ab969] text-white flex items-center justify-center w-[67px] h-[85px] absolute top-[42px] left-[134px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>長野</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 18) %>" class="block">
+        <div id="yamanashi" class="bg-[#4ab969] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[127px] left-[134px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>山梨</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 20) %>" class="block">
+        <div id="gifu" class="bg-[#4ab969] text-white flex items-center justify-center w-[50px] h-[55px] absolute top-[57px] left-[84px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>岐阜</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 21) %>" class="block">
+        <div id="shizuoka" class="bg-[#4ab969] text-white flex items-center justify-center w-[67px] h-[42px] absolute top-[169px] left-[134px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>静岡</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 22) %>" class="block">
+        <div id="aichi" class="bg-[#4ab969] text-white flex items-center justify-center w-[50px] h-[57px] absolute top-[112px] left-[84px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>愛知</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 近畿 -->
+  <div id="kinki" class="absolute left-[320px] top-[223px] w-[118px] h-[211px]">
+    <p class="sr-only">近畿</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 25) %>" class="block">
+        <div id="kyoto" class="bg-[#f0c23d] text-white flex items-center justify-center w-[67px] h-[84px] absolute left-[51px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>京都</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 24) %>" class="block">
+        <div id="shiga" class="bg-[#f0c23d] text-white flex items-center justify-center w-[84px] h-[42px] absolute top-[42px] left-[118px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>滋賀</p>
+        </div>
+      </a>
+      <!-- 他の県も同様に追加 -->
+      <a href="<%= sakes_path(prefecture: 26) %>" class="block">
+        <div id="osaka" class="bg-[#f0c23d] text-white flex items-center justify-center w-[67px] h-[85px] absolute top-[84px] left-[51px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>大阪</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 28) %>" class="block">
+        <div id="nara" class="bg-[#f0c23d] text-white flex items-center justify-center w-[42px] h-[85px] absolute top-[84px] left-[118px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>奈良</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 23) %>" class="block">
+        <div id="mie" class="bg-[#f0c23d] text-white flex items-center justify-center w-[42px] h-[85px] absolute top-[84px] left-[160px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>三重</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 29) %>" class="block">
+        <div id="wakayama" class="bg-[#f0c23d] text-white flex items-center justify-center w-[113px] h-[42px] absolute top-[169px] left-[61px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>和歌山</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 27) %>" class="block">
+        <div id="hyougo" class="bg-[#f0c23d] text-white flex items-center justify-center w-[51px] h-[98px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>兵庫</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 中国 -->
+  <div id="tyugoku" class="absolute left-[169px] top-[223px] w-[151px] h-[98px]">
+    <p class="sr-only">中国</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 30) %>" class="block">
+        <div id="tottori" class="bg-[#ef9f27] text-white flex items-center justify-center w-[50px] h-[49px] absolute left-[101px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>鳥取</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 32) %>" class="block">
+        <div id="okayama" class="bg-[#ef9f27] text-white flex items-center justify-center w-[50px] h-[49px] absolute top-[49px] left-[101px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>岡山</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 31) %>" class="block">
+        <div id="shimane" class="bg-[#ef9f27] text-white flex items-center justify-center w-[51px] h-[49px] absolute left-[50px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>島根</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 33) %>" class="block">
+        <div id="hiroshima" class="bg-[#ef9f27] text-white flex items-center justify-center w-[51px] h-[49px] absolute top-[49px] left-[50px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>広島</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 34) %>" class="block">
+        <div id="yamaguchi" class="bg-[#ef9f27] text-white flex items-center justify-center w-[50px] h-[98px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>山口</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 四国 -->
+  <div id="shikoku" class="absolute left-[169px] top-[350px] w-[184px] h-[84px]">
+    <p class="sr-only">四国</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 36) %>" class="block">
+        <div id="kagawa" class="bg-[#d08f68] text-white flex items-center justify-center w-[92px] h-[42px] absolute top-0 right-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>香川</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 37) %>" class="block">
+        <div id="ehime" class="bg-[#d08f68] text-white flex items-center justify-center w-[92px] h-[42px] absolute top-0 left-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>愛媛</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 35) %>" class="block">
+        <div id="tokushima" class="bg-[#d08f68] text-white flex items-center justify-center w-[92px] h-[42px] absolute top-[42px] right-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>徳島</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 38) %>" class="block">
+        <div id="kouchi" class="bg-[#d08f68] text-white flex items-center justify-center w-[92px] h-[42px] absolute top-[42px] left-0 rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>高知</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 九州・沖縄 -->
+  <div id="kyusyu-okinawa" class="absolute top-[235px] w-[152px] h-[247px]">
+    <p class="sr-only">九州・沖縄</p>
+    <div class="area">
+      <a href="<%= sakes_path(prefecture: 39) %>" class="block">
+        <div id="fukuoka" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-0 left-[101px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>福岡</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 40) %>" class="block">
+        <div id="saga" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-0 left-[51px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>佐賀</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 41) %>" class="block">
+        <div id="nagasaki" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-0 left-[1px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>長崎</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 43) %>" class="block">
+        <div id="oita" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-[50px] left-[101px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>大分</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 44) %>" class="block">
+        <div id="miyazaki" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-[100px] left-[101px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>宮崎</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 42) %>" class="block">
+        <div id="kumamoto" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[100px] absolute top-[50px] left-[51px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>熊本</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 45) %>" class="block">
+        <div id="kagoshima" class="bg-[#ff7575] text-white flex items-center justify-center w-[68px] h-[50px] absolute top-[150px] left-[83px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>鹿児島</p>
+        </div>
+      </a>
+      <a href="<%= sakes_path(prefecture: 46) %>" class="block">
+        <div id="okinawa" class="bg-[#ff7575] text-white flex items-center justify-center w-[50px] h-[50px] absolute top-[197px] left-[1px] rounded-[6px] border border-white hover:opacity-50 transition-opacity duration-200">
+          <p>沖縄</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
 </div>
