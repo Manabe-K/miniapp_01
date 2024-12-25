@@ -1,0 +1,21 @@
+<div class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-20 mb-16" style="margin-top: 150px;">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+    今回の日本酒
+  </h1>
+
+  <% if @random_sakes.any? %>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">ランダムに選ばれた日本酒</h2>
+    <%= render 'shared/sakes_table', sakes: @random_sakes %>
+  <% end %>
+
+  <% if @other_sakes.any? %>
+    <div class="text-center py-6">
+      <%= link_to '該当する日本酒一覧を見る', other_sakes_path(ids: @other_sakes.pluck(:id)), class: 'bg-yellow-800 text-white py-2 px-4 rounded hover:bg-yellow-900 mt-4 inline-block' %>
+    </div>
+  <% else %>
+    <div class="text-center text-xl font-semibold text-gray-700 py-6">
+      該当する日本酒は見つかりませんでした。<br>
+      <%= link_to 'もう一度探訪', questions_path, class: "inline-block bg-yellow-800 text-white py-2 px-4 rounded-md hover:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-900" %>
+    </div>
+  <% end %>
+</div>

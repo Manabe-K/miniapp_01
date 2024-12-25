@@ -1,12 +1,21 @@
-<header class="bg-white shadow">
-      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<header class=" bg-indigo-950 shadow fixed top-0 left-0 w-full z-50">
+      <div class="px-10 py-4 flex justify-between items-center">
         <!-- 左側のロゴ -->
-        <div class="text-lg font-bold text-gray-800">
-          <%= link_to "日本酒診断", root_path, class: "hover:text-blue-600" %>
+        <div class="text-lg font-bold text-indigo-950">
+          <%= link_to root_path, class: "hover:text-blue-600" do %>
+            <%= image_tag 'logo.png' %>
+          <% end %>
         </div>
         <!-- 右側のリンク -->
-        <div>
-          <%= link_to "診断開始", diagnosis_start_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
-        </div>
-      </div>
+          <div class="flex space-x-4">
+            <div>
+              <%= link_to "探訪する", questions_path, class: "bg-yellow-800 text-white px-4 py-2 rounded hover:bg-yellow-900" %>
+            </div>
+            <div>
+              <%= link_to "登録する", new_sake_path, class: "bg-yellow-800 text-white px-4 py-2 rounded hover:bg-yellow-900" %>
+            </div>
+            <div>
+              <%= link_to "日本酒一覧", sakes_path, class: "bg-yellow-800 text-white px-4 py-2 rounded hover:bg-yellow-900" %>
+            </div>
+          </div>
 </header>

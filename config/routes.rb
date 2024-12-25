@@ -13,11 +13,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   
   root 'pages#home' # トップページを表示するコントローラーとアクションを設定
-  get 'diagnosis/start', to: 'diagnosis#start'
-  resources :questions, only: [:index] do
-    collection do
-      post :submit
-    end
-  end
-  resource :results, only: [:show]
+  resources :sakes, only: [:index, :new, :create, :show]
+  get 'questions', to: 'questions#index', as: 'questions'
+  get 'search', to: 'questions#search', as: 'search_results'
+  get 'other_sakes', to: 'questions#other_sakes', as: 'other_sakes'
 end

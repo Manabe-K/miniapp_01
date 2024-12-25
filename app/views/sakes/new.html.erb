@@ -1,0 +1,124 @@
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg" style="margin-top: 150px; margin-bottom: 100px;">
+  <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">日本酒を登録</h1>
+
+  <%= form_with model: @sake, local: true do |form| %>
+    <% if @sake.errors.any? %>
+      <div id="error_explanation" class="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+        <h2 class="font-semibold"><%= pluralize(@sake.errors.count, "error") %> prohibited this sake from being saved:</h2>
+        <ul class="list-disc pl-6">
+          <% @sake.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="mb-4">
+    <%= form.label :"種類", class: "block text-lg font-medium text-gray-700" %>
+    <%= form.select :type_of_sake, Sake.type_of_sakes.keys.map { |key| [key.humanize, key] }, { include_blank: '選択してください' }, class: "mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <!-- お酒の名前 -->
+  <div class="mb-4">
+    <%= form.label :"お酒の名前", class: "block text-lg font-medium text-gray-700" %>
+    <%= form.text_field :name, placeholder: "例: 鶴見錦", class: "mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+<!-- 日本酒度 -->
+<div class="mb-4">
+  <%= form.label :"日本酒度（小数第一位まで）", class: "block text-lg font-medium text-gray-700" %>
+
+  <!-- 電卓風入力フォーム -->
+  <div class="mt-2 p-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <!-- 入力された数字を表示 -->
+    <input type="text" id="sake_meter_value" name="sake[sake_meter_value]" placeholder="例: +3.5" class="block w-full text-2xl text-right p-2 mb-4 border-b border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+    <!-- 数字ボタン -->
+    <div class="grid grid-cols-4 gap-2">
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(1)">1</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(2)">2</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(3)">3</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addOperator('+')">+</button>
+
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(4)">4</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(5)">5</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(6)">6</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addOperator('-')">-</button>
+
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(7)">7</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(8)">8</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(9)">9</button>
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addOperator('.')">.</button>
+
+      <button type="button" class="p-4 bg-gray-200 hover:bg-gray-300 rounded-md" onclick="addNumber(0)">0</button>
+      <button type="button" class="p-4 bg-red-500 hover:bg-red-600 rounded-md text-white" onclick="clearInput()">C</button>
+    </div>
+  </div>
+</div>
+
+
+    <div class="mb-4 flex items-center space-x-4">
+      <!-- 価格（720ml） -->
+      <div class="flex-1">
+        <%= form.label :"価格（720ml）", class: "block text-md font-medium text-gray-700" %>
+        <div class="relative">
+          <%= form.text_field :price, 
+              placeholder: "例: 3000", 
+              class: "mt-2 p-2 pl-3 pr-10 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+          
+          <!-- 円記号 -->
+          <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700">円</span>
+        </div>
+      </div>
+
+      <!-- 地域 -->
+      <div class="flex-1">
+        <%= form.label :"都道府県", class: "block text-md font-medium text-gray-700" %>
+        <%= form.select :prefecture, Sake.prefectures.keys.map { |pref| [pref, pref] }, { include_blank: '選択してください' }, class: "mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+
+  <div class="mb-4">
+    <%= form.label :"ラベル画像", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.file_field :label_image, class: "mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-semibold hover:file:bg-gray-100", id: "label-image-input" %>
+
+    <!-- 画像プレビューを表示する要素 -->
+    <div id="label-image-preview" class="mt-2">
+      <p class="text-sm text-gray-500">プレビューがここに表示されます。</p>
+    </div>
+
+    <% if @sake.errors[:label_image].any? %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= @sake.errors[:label_image].first %>
+      </p>
+    <% end %>
+    <%= form.hidden_field :label_image_cache %>
+  </div>
+
+    <!-- ジャンル -->
+    <div class="mb-6">
+      <%= form.label :label_genre, "ラベルのジャンル", class: "block text-lg font-medium text-gray-700" %>
+      <div class="flex space-x-4 mt-2">
+        <%= form.radio_button :label_genre, "指定なし", id: "label_genre_unspecified" %>
+        <%= form.label :label_genre_unspecified, "指定なし", class: "text-sm text-gray-700" %>
+
+        <%= form.radio_button :label_genre, "オシャレ", id: "label_genre_fashionable" %>
+        <%= form.label :label_genre_fashionable, "オシャレ", class: "text-sm text-gray-700" %>
+
+        <%= form.radio_button :label_genre, "文字だけ", id: "label_genre_text_only" %>
+        <%= form.label :label_genre_text_only, "文字だけ", class: "text-sm text-gray-700" %>
+      </div>
+    </div>
+
+    <!-- 保存ボタン -->
+    <div class="mb-4 flex justify-center">
+      <%= form.submit '保存', class: 'w-full sm:w-auto py-3 px-6 text-center text-lg font-semibold text-white bg-yellow-800 rounded-lg hover:bg-yellow-900 focus:outline-none focus:ring-4 focus:ring-yellow-900 transition duration-300 transform hover:scale-105' %>
+    </div>
+  <% end %>
+
+  <!-- 戻るリンク -->
+  <div class="mt-6 text-center">
+    <%= link_to '戻る', sakes_path, class: "text-blue-500 hover:text-blue-700 font-semibold" %>
+  </div>
+</div>
+
