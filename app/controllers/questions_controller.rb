@@ -12,19 +12,19 @@ class QuestionsController < ApplicationController
       range = params[:sake_meter_value_range]
       case range
       when "大甘口:-6.0"
-        @results_sakes = @results_sakes.where('sake_meter_value <= ?', -6.0)
+        @results_sakes = @results_sakes.where("sake_meter_value <= ?", -6.0)
       when "甘口:-5.9~ -3.5"
-        @results_sakes = @results_sakes.where('sake_meter_value > ? AND sake_meter_value <= ?', -5.9, -3.5)
+        @results_sakes = @results_sakes.where("sake_meter_value > ? AND sake_meter_value <= ?", -5.9, -3.5)
       when "やや甘口:-3.4~ -1.5"
-        @results_sakes = @results_sakes.where('sake_meter_value > ? AND sake_meter_value <= ?', -3.4, -1.5)
+        @results_sakes = @results_sakes.where("sake_meter_value > ? AND sake_meter_value <= ?", -3.4, -1.5)
       when "普通:-1.4~ 1.4"
-        @results_sakes = @results_sakes.where('sake_meter_value > ? AND sake_meter_value <= ?', -1.4, 1.4)
+        @results_sakes = @results_sakes.where("sake_meter_value > ? AND sake_meter_value <= ?", -1.4, 1.4)
       when "やや辛口:1.5~ 3.4"
-        @results_sakes = @results_sakes.where('sake_meter_value > ? AND sake_meter_value <= ?', 1.5, 3.4)
+        @results_sakes = @results_sakes.where("sake_meter_value > ? AND sake_meter_value <= ?", 1.5, 3.4)
       when "辛口:3.5~ 5.9"
-        @results_sakes = @results_sakes.where('sake_meter_value > ? AND sake_meter_value <= ?', 3.5, 5.9)
+        @results_sakes = @results_sakes.where("sake_meter_value > ? AND sake_meter_value <= ?", 3.5, 5.9)
       when "大辛口:6.0"
-        @results_sakes = @results_sakes.where('sake_meter_value >= ?', 6.0)
+        @results_sakes = @results_sakes.where("sake_meter_value >= ?", 6.0)
       end
     end
 
@@ -32,19 +32,19 @@ class QuestionsController < ApplicationController
       area = params[:prefecture_area]
       case area
       when "北海道・東北"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 0, 6)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 0, 6)
       when "関東"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 7, 13)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 7, 13)
       when "中部"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 14, 22)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 14, 22)
       when "近畿"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 23, 29)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 23, 29)
       when "中国"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 30, 34)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 30, 34)
       when "四国"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 35, 38)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 35, 38)
       when "九州・沖縄"
-        @results_sakes = @results_sakes.where('prefecture > ? AND prefecture <= ?', 39, 46)
+        @results_sakes = @results_sakes.where("prefecture > ? AND prefecture <= ?", 39, 46)
       end
     end
 

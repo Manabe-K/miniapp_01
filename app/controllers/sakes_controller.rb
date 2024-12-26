@@ -2,11 +2,11 @@ class SakesController < ApplicationController
   def index
     if params[:prefecture]
       @sakes = Sake.where(prefecture: params[:prefecture]).page(params[:page])
-      @random_sakes = @sakes.order('RANDOM()').limit(5)
+      @random_sakes = @sakes.order("RANDOM()").limit(5)
       @prefecture_name = Sake.prefectures.keys[params[:prefecture].to_i].capitalize
     else
       @sakes = Sake.all.page(params[:page])
-      @random_sakes = @sakes.order('RANDOM()').limit(5)
+      @random_sakes = @sakes.order("RANDOM()").limit(5)
       @prefecture_name = "全国"
     end
   end
@@ -17,19 +17,15 @@ class SakesController < ApplicationController
 
   def create
     # sake_meter_valueがnilまたは空の場合はデフォルト値を設定
-    sake_meter_value = params[:sake][:sake_meter_value].presence || '0'
-    
+    sake_meter_value = params[:sake][:sake_meter_value].presence || "0"
     # 数値に変換（+3.0や-2.5などの形式を処理）
-    sake_meter_value = sake_meter_value.gsub(/[^0-9.-]/, '')  # +も含める、-と.を許可
-    
+    sake_meter_value = sake_meter_value.gsub(/[^0-9.-]/, "")  # +も含める、-と.を許可
     # 入力値が不正でないかチェック（例えば - と . の重複）
-    if sake_meter_value.count('-') > 1 || sake_meter_value.count('.') > 1
-      flash[:error] = '不正な入力です。数字、-、.のみを使用してください。'
+    if sake_meter_value.count("-") > 1 || sake_meter_value.count(".") > 1
+      flash[:error] = "不正な入力です。数字、-、.のみを使用してください。"
       render :new and return
     end
-  
     @sake = Sake.new(sake_params.merge(sake_meter_value: sake_meter_value.to_f))
-  
     if @sake.save
       redirect_to sake_path(@sake)
     else

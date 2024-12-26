@@ -4,7 +4,7 @@
   </h1>
 
   <% if @other_sakes.any? %>
-    <%= render 'shared/sakes_table', sakes: @other_sakes %>
+    <%= render "shared/sakes_table", sakes: @other_sakes %>
   <% else %>
     <div class="text-center text-xl font-semibold text-gray-700 py-6">
       該当する日本酒は見つかりませんでした。
