@@ -1,15 +1,16 @@
 <style>
   /* スライダーの親コンテナ */
-  .swiper-container {
-    width: 60%; /* スライダーの幅を指定、必要に応じて調整 */
-    height: 450px; /* スライダーの高さ */
-    margin: 0 auto; /* スライダーを中央寄せ */
-    padding: 0 10px; /* 左右にパディングを追加 */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* コンテナ内でのセンタリング */
-  }
-
+.swiper-container {
+  width: 100%; /* 親要素に幅を合わせる */
+  max-width: 90%; /* 最大幅を設定 */
+  height: 450px;
+  margin: 0 auto; /* 中央寄せ */
+  padding: 0 10px;
+  overflow: hidden; /* 子要素が親を超えないように設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   /* スライドのスタイル */
   .swiper-slide {
     border-radius: 15px;
@@ -83,17 +84,15 @@
 
 <!-- Swiperの初期化スクリプト -->
 <script>
-  var swiper = new Swiper('.mySwiper', {
-    loop: true,
-    effect: 'coverflow',
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    autoplay: {
-      delay: 3000,
-    },
-    speed: 3000,
-    scrollbar: {
-      hide: true,
-    },
-  });
+var swiper = new Swiper('.mySwiper', {
+  loop: true,
+  effect: 'coverflow',
+  centeredSlides: true, // 現在のスライドを中央に配置
+  slidesPerView: 1.5, // 一度に表示するスライドの数（中央のスライド＋左右をチラ見せ）
+  spaceBetween: 20, // スライド間のスペース（px）
+  autoplay: {
+    delay: 3000,
+  },
+  speed: 3000,
+});
 </script>
