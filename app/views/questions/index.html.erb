@@ -8,61 +8,61 @@
 
       <!-- 日本酒度入力 -->
       <div class="flex flex-col">
-        <%= f.label :sake_meter_value_range, '日本酒度範囲', class: 'text-lg font-medium text-gray-700 mb-3' %>
+        <%= f.label :sake_meter_value_range, "日本酒度範囲", class: "text-lg font-medium text-gray-700 mb-3" %>
 
         <%= f.select :sake_meter_value_range, 
           [
-            ['選択してください', ''],
-            ['大甘口 (-6.0以下)', '大甘口:-6.0'],
-            ['甘口 (-5.9〜-3.5)', '甘口:-5.9~ -3.5'],
-            ['やや甘口 (-3.4〜-1.5)', 'やや甘口:-3.4~ -1.5'],
-            ['普通 (-1.4〜1.4)', '普通:-1.4~ 1.4'],
-            ['やや辛口 (1.5〜3.4)', 'やや辛口:1.5~ 3.4'],
-            ['辛口 (3.5〜5.9)', '辛口:3.5~ 5.9'],
-            ['大辛口 (6.0以上)', '大辛口:6.0']
+            ["選択してください", ""],
+            ["大甘口 (-6.0以下)", "大甘口:-6.0"],
+            ["甘口 (-5.9〜-3.5)", "甘口:-5.9~ -3.5"],
+            ["やや甘口 (-3.4〜-1.5)", "やや甘口:-3.4~ -1.5"],
+            ["普通 (-1.4〜1.4)", "普通:-1.4~ 1.4"],
+            ["やや辛口 (1.5〜3.4)", "やや辛口:1.5~ 3.4"],
+            ["辛口 (3.5〜5.9)", "辛口:3.5~ 5.9"],
+            ["大辛口 (6.0以上)", "大辛口:6.0"]
           ],
           include_blank: false,
-          class: 'p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300'
+          class: "p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300"
         %>
       </div>
 
       <!-- 地域 -->
       <div class="flex flex-col">
-        <%= f.label :prefecture_area, '地域', class: 'text-lg font-medium text-gray-700 mb-3' %>
+        <%= f.label :prefecture_area, "地域", class: "text-lg font-medium text-gray-700 mb-3" %>
 
         <%= f.select :prefecture_area,
           [
-            ['選択してください', ''],
-            ['北海道・東北', '北海道・東北'],
-            ['関東', '関東'],
-            ['中部', '中部'],
-            ['近畿', '近畿'],
-            ['中国', '中国'],
-            ['四国', '四国'],
-            ['九州・沖縄', '九州・沖縄']
+            ["選択してください", ""],
+            ["北海道・東北", "北海道・東北"],
+            ["関東", "関東"],
+            ["中部", "中部"],
+            ["近畿", "近畿"],
+            ["中国", "中国"],
+            ["四国", "四国"],
+            ["九州・沖縄", "九州・沖縄"]
           ],
           include_blank: false,
-          class: 'p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300'
+          class: "p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300"
         %>
       </div>
 
       <!-- ラベルジャンル選択 -->
       <div class="flex flex-col">
-        <%= f.label :label_genre_type, 'ラベルジャンル', class: 'text-lg font-medium text-gray-700 mb-3' %>
+        <%= f.label :label_genre_type, "ラベルジャンル", class: "text-lg font-medium text-gray-700 mb-3" %>
         <%= f.select :label_genre_type, 
           [
-            ['選択してください', ''],
-            ['オシャレ', 'オシャレ'],
-            ['文字だけ', '文字だけ']
+            ["選択してください", ""],
+            ["オシャレ", "オシャレ"],
+            ["文字だけ", "文字だけ"]
           ],
           include_blank: false,
-          class: 'p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300'
+          class: "p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500 transition duration-300"
         %>
       </div>
     </div>
 
     <div class="mt-6 text-center">
-      <%= f.submit '探訪', class: 'w-full sm:w-auto py-3 px-6 text-lg font-semibold text-white bg-yellow-800 rounded-lg hover:bg-yellow-900 focus:outline-none focus:ring-4 focus:ring-yellow-900 transition duration-300 transform hover:scale-105' %>
+      <%= f.submit "探訪", class: "w-full sm:w-auto py-3 px-6 text-lg font-semibold text-white bg-yellow-800 rounded-lg hover:bg-yellow-900 focus:outline-none focus:ring-4 focus:ring-yellow-900 transition duration-300 transform hover:scale-105" %>
     </div>
   <% end %>
 </div>

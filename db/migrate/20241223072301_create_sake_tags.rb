@@ -12,6 +12,6 @@ class CreateSakeTags < ActiveRecord::Migration[8.0]
     add_foreign_key :sake_tags, :tags, column: :tag_id
 
     # インデックスを追加してユニーク制約を付与
-    add_index :sake_tags, [:sake_id, :tag_id], unique: true
+    add_index :sake_tags, [ :sake_id, :tag_id ], unique: true
   end
 end

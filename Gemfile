@@ -42,9 +42,9 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'carrierwave', '2.2.2'
-gem 'rails-i18n'
-gem 'kaminari', '~> 1.2'
+gem "carrierwave", "2.2.2"
+gem "rails-i18n"
+gem "kaminari", "~> 1.2"
 gem "meta-tags"
 
 group :development, :test do
@@ -55,7 +55,7 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'rubocop'
+  gem "rubocop"
   gem "rubocop-rails-omakase", require: false
 end
 

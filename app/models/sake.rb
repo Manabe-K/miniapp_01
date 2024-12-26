@@ -25,5 +25,4 @@ class Sake < ApplicationRecord
   validates :label_genre, presence: true
 
   scope :within_sake_meter_value_range, ->(min, max) { where(sake_meter_value: min..max) }
-
 end
