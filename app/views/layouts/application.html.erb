@@ -19,7 +19,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="flex flex-col min-h-screen" style="background-image: url('<%= asset_path('home.jpg') %>');">
+  <body class="flex flex-col min-h-screen overflow-x-hidden" style="background-image: url('<%= asset_path('home.jpg') %>');">
     <%= render 'shared/header' %>
     <div class="flex-grow">
     <%= yield %>
