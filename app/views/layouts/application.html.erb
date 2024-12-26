@@ -17,6 +17,7 @@
 
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body class="flex flex-col min-h-screen overflow-x-hidden" style="background-image: url('<%= asset_path('home.jpg') %>');">
