@@ -42,7 +42,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "carrierwave", "2.2.2"
+gem "carrierwave", "3.1.0"
 gem "rails-i18n"
 gem "kaminari", "~> 1.2"
 gem "meta-tags"
