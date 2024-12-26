@@ -45,6 +45,7 @@ gem "thruster", require: false
 gem 'carrierwave', '2.2.2'
 gem 'rails-i18n'
 gem 'kaminari', '~> 1.2'
+gem "meta-tags"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
